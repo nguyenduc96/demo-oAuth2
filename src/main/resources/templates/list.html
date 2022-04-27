@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+           <td>
+               email
+           </td>
+
+            <td>
+                provider
+            </td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.provider}"></td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>
