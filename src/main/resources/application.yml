@@ -4,14 +4,16 @@ spring:
       client:
         registration:
           google:
-            clientId: ${GG_CLIENT_ID}
-            clientSecret: ${GG_SECRET_KEY}
+            clientId: 592452468790-0esp77q9eh3nmcn9f370qa1b6h9f10i3.apps.googleusercontent.com
+            clientSecret: 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
             scope:
               - email
               - profile
           facebook:
-            clientId: ${FB_CLIENT_ID}
-            clientSecret: ${FB_SECRET_KEY}
+            clientId: 4980115898738616
+            clientSecret: cd323bc18783789c21ce3333301cdb47
             scope:
               - email
               - public_profile
+server:
+  port: 8080

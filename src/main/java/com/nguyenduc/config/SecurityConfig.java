@@ -47,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .clientRegistrationRepository(clientRegistrationRepository)
                 .authorizedClientService(authorizedClientService)
-                .defaultSuccessUrl("/loginsucess")
-                .failureUrl("/fail")
+                .defaultSuccessUrl("/login-success")
+                .failureUrl("/error")
                 ;
     }
 

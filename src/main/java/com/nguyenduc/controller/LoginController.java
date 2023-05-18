@@ -47,18 +47,18 @@ public class LoginController {
 
     @GetMapping("")
     public String login(Model model) {
-        Iterable<ClientRegistration> clientRegistrations = null;
-        ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository)
-                .as(Iterable.class);
-        if (type != ResolvableType.NONE &&
-                ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
-            clientRegistrations = (Iterable<ClientRegistration>) clientRegistrationRepository;
-        }
+//        Iterable<ClientRegistration> clientRegistrations = null;
+//        ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository)
+//                .as(Iterable.class);
+//        if (type != ResolvableType.NONE &&
+//                ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
+//            clientRegistrations = (Iterable<ClientRegistration>) clientRegistrationRepository;
+//        }
 
-        clientRegistrations.forEach(registration ->
-                oauth2AuthenticationUrls.put(registration.getClientName(),
-                        authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
-        model.addAttribute("urls", oauth2AuthenticationUrls);
+//        clientRegistrations.forEach(registration ->
+//                oauth2AuthenticationUrls.put(registration.getClientName(),
+//                        authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
+//        model.addAttribute("urls", oauth2AuthenticationUrls);
 
         return "index";
     }
@@ -66,8 +66,13 @@ public class LoginController {
     @Autowired
     private OAuth2AuthorizedClientService authorizedClientService;
 
+    @GetMapping("/error")
+    public String error() {
+        return "fail";
+    }
 
-    @GetMapping("/loginsucess")
+
+    @GetMapping("/login-success")
     public String login(Model model, OAuth2AuthenticationToken authentication) {
         OAuth2AuthorizedClient client = authorizedClientService
                 .loadAuthorizedClient(
@@ -111,7 +116,7 @@ public class LoginController {
             if (emailNew.size() != 0) {
                 repo.save(user);
             }
-            model.addAttribute("name", client.getClientRegistration().getRegistrationId());
+            model.addAttribute("name", userAttributes.get("name").toString());
         }
 
         return "loginsucess";
